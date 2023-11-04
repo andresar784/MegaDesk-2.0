@@ -7,11 +7,20 @@
 
 <h1>Desks</h1>
 
+<form>
+    <p>
+        Search customers: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Desk[0].name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Desk[0].name)
+                </a>                
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Desk[0].drawers)
@@ -30,6 +39,11 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Desk[0].rushOrder)
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    @Html.DisplayNameFor(model => model.Desk[0].date)
+                </a>                
             </th>
             <th></th>
         </tr>
@@ -57,6 +71,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.rushOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

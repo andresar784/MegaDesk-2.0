@@ -19,5 +19,8 @@ namespace MegaDesk_2._0.Models
         public int? width { get; set; }
         [Display(Name = "Rush Order ")]
         public int rushOrder { get; set; }
+
+        [DataType(DataType.Date),Display(Name = "Date")]
+        public DateTime date { get; set; } = DateTime.Now;
     }
 }

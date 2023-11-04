@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MegaDesk_2._0.Data;
 using MegaDesk_2._0.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace MegaDesk_2._0.Pages.Desks
 {
@@ -21,12 +24,40 @@ namespace MegaDesk_2._0.Pages.Desks
 
         public IList<Desk> Desk { get;set; } = default!;
 
-        public async Task OnGetAsync()
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+        
+        public string DateSort { get; set; }
+        public string NameSort { get; set; }
+
+        public async Task OnGetAsync(string sortOrder)
         {
-            if (_context.Desks != null)
+            var desks = from d in _context.Desks select d;
+
+            DateSort = String.IsNullOrEmpty(sortOrder) ? "date_desc" : "";
+            NameSort = sortOrder == "Name" ? "name_desc" : "Name";
+
+            switch (sortOrder)
             {
-                Desk = await _context.Desks.ToListAsync();
+                case "date_desc":
+                    desks = desks.OrderByDescending(s => s.date); break;
+                case "Name":
+                    desks = desks.OrderBy(s => s.name); break;
+                case "name_desc":
+                    desks = desks.OrderByDescending(s => s.name); break;
+                default:
+                    desks = desks.OrderBy(s => s.date); break;
             }
+
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                desks = desks.Where(s => s.name.Contains(SearchString));
+            }
+
+
+
+            Desk = await desks.ToListAsync();
         }
     }
 }

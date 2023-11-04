@@ -4,6 +4,7 @@ using MegaDesk_2._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MegaDesk_2._0.Migrations
 {
     [DbContext(typeof(MegaDesk_2_0Context))]
-    partial class MegaDesk_2_0ContextModelSnapshot : ModelSnapshot
+    [Migration("20231104170914_Date")]
+    partial class Date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
