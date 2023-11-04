@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu:wght@700&display=swap');
+
 html {
   font-size: 14px;
 }
@@ -6,6 +8,49 @@ html {
   html {
     font-size: 16px;
   }
+}
+
+h1, h2, h3, h4, .navbar-brand {
+    font-family: 'Ubuntu', Arial, sans-serif;
+}
+
+.navbar-brand {
+    text-decoration: none;
+    font-size: 30px;
+    font-style: italic;
+    color: #28a745;
+}
+
+.navbar {
+    padding: 1em;
+    width: 100vw;
+}
+
+.navbar > .container  {
+    width: 100%;
+}
+
+.navbar > .container, .navbar > .container ul {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.navbar>.container ul {
+    list-style-type: none;
+    gap: 2em;
+}
+
+.navbar>.container ul li a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #000;
+}   
+
+
+p, li, footer, form, input, select, table, dl, .back-to-list {
+    font-family: 'Nanum Gothic', Helvetica, sans-serif;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -21,9 +66,24 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
 }
+
+.main-container {
+    display: flex;
+    margin-top: 2em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
+}
+
 main {
-    flex: 1;
+    width: 85%;
+    height: 85%;
+    background-color: white;
+    padding: 2em;
 }
 
 .footer {
@@ -52,5 +112,61 @@ button.index-button {
         background-color: #218838;
 }
 
+.form-group {
+    margin-top: 1.25em;
+}
 
+.form-group>label {
+    display: block;
+    margin-bottom: .5em;
+}
 
+input[type="submit"] {
+    padding: .8em 1.8em;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.table {
+    width: 100%;
+}
+
+th {
+    text-align: left;
+}
+
+th>a:visited {
+    color: blue;
+}
+
+th, td {
+    padding: 5px 0px;
+}
+
+dt {
+    float: left;
+    clear: left;
+    font-weight: bold;
+}
+
+dt::after {
+    content: ":";
+}
+
+dd {
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+}
+
+.back-to-list {
+    display: block;
+    margin-top: 1em;
+    font-style: italic;
+}
+
+.back-to-list:visited {
+    color: blue;
+}
