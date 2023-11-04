@@ -5,11 +5,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Desks</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -32,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Desk[0].width)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Desk[0].surface)
+                @Html.DisplayNameFor(model => model.Desk[0].rushOrder)
             </th>
             <th></th>
         </tr>
@@ -59,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.width)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.surface)
+                @Html.DisplayFor(modelItem => item.rushOrder)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

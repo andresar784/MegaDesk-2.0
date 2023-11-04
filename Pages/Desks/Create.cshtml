@@ -20,18 +20,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="Desk.drawers" class="control-label"></label>
-                <input asp-for="Desk.drawers" class="form-control" />
+                <select asp-for="Desk.drawers" class="form-control">
+                    <option value="">Select Drawers</option>
+                    <option value="1">1 Drawer</option>
+                    <option value="2">2 Drawers</option>
+                    <option value="3">3 Drawers</option>
+                    <option value="4">4 Drawers</option>
+                    <option value="5">5 Drawers</option>
+                    <option value="6">6 Drawers</option>
+                    <option value="7">7 Drawers</option>
+                </select>
                 <span asp-validation-for="Desk.drawers" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Desk.material" class="control-label"></label>
-                <input asp-for="Desk.material" class="form-control" />
+                <select asp-for="Desk.material" class="form-control">
+                    <option value="">Select Material</option>
+                    <option value="oak">Oak</option>
+                    <option value="pine">Pine</option>
+                    <option value="rosewood">RoseWood</option>
+                    <option value="laminate">Laminate</option>
+                    <option value="veneer">Veneer</option>
+                </select>
                 <span asp-validation-for="Desk.material" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Desk.price" class="control-label"></label>
-                <input asp-for="Desk.price" class="form-control" />
-                <span asp-validation-for="Desk.price" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Desk.height" class="control-label"></label>
@@ -44,10 +55,16 @@
                 <span asp-validation-for="Desk.width" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Desk.surface" class="control-label"></label>
-                <input asp-for="Desk.surface" class="form-control" />
-                <span asp-validation-for="Desk.surface" class="text-danger"></span>
+                <label asp-for="Desk.rushOrder" class="control-label"></label>
+                <select asp-for="Desk.rushOrder" class="form-control">
+                    <option value="">Default - 14 days</option>
+                    <option value="3">3 Days</option>
+                    <option value="5">5 Days</option>
+                    <option value="7">7 Days</option>
+                 </select>
+                <span asp-validation-for="Desk.rushOrder" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

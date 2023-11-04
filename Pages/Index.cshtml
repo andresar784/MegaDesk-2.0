@@ -5,6 +5,14 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Desk 2.0</h1>
+    <p style="height: 30px"></p>
+    <form method="get" asp-page="/Desks/Create">
+        <button class="index-button" type="submit">Create a Desk</button>
+    </form>
+    <p style="height: 30px"></p>
+    <form method="get" asp-page="/Desks/Index">
+        <button class="index-button" type="submit">Desks Info</button>
+    </form>
+
 </div>

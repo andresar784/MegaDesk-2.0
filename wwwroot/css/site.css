@@ -32,3 +32,25 @@ main {
     height: 60px;
     padding: 10px;
 }
+
+button.index-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 300px;
+}
+
+ button.index-button:hover {
+        background-color: #218838;
+}
+
+
+

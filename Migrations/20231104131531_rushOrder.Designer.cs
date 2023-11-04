@@ -4,6 +4,7 @@ using MegaDesk_2._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MegaDesk_2._0.Migrations
 {
     [DbContext(typeof(MegaDesk_2_0Context))]
-    partial class MegaDesk_2_0ContextModelSnapshot : ModelSnapshot
+    [Migration("20231104131531_rushOrder")]
+    partial class rushOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace MegaDesk_2._0.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("price")
+                    b.Property<float>("price")
                         .HasColumnType("real");
 
                     b.Property<int>("rushOrder")
