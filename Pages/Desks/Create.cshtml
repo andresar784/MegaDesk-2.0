@@ -6,7 +6,6 @@
 }
 
 <h1>Create</h1>
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,12 +13,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Desk.name" class="control-label"></label>
-                <input asp-for="Desk.name" class="form-control" />
+                <input asp-for="Desk.name" class="form-control" id="deskName" />
                 <span asp-validation-for="Desk.name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Desk.drawers" class="control-label"></label>
-                <select asp-for="Desk.drawers" class="form-control">
+                <select asp-for="Desk.drawers" class="form-control" id="deskDrawers">
                     <option value="">Select Drawers</option>
                     <option value="1">1 Drawer</option>
                     <option value="2">2 Drawers</option>
@@ -33,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Desk.material" class="control-label"></label>
-                <select asp-for="Desk.material" class="form-control">
+                <select asp-for="Desk.material" class="form-control" id="deskMaterial">
                     <option value="">Select Material</option>
                     <option value="oak">Oak</option>
                     <option value="pine">Pine</option>
@@ -45,25 +44,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="Desk.height" class="control-label"></label>
-                <input asp-for="Desk.height" class="form-control" />
+                <input asp-for="Desk.height" class="form-control" id="deskHeight" />
                 <span asp-validation-for="Desk.height" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Desk.width" class="control-label"></label>
-                <input asp-for="Desk.width" class="form-control" />
+                <input asp-for="Desk.width" class="form-control" id="deskWidth" />
                 <span asp-validation-for="Desk.width" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Desk.rushOrder" class="control-label"></label>
-                <select asp-for="Desk.rushOrder" class="form-control">
+                <select asp-for="Desk.rushOrder" class="form-control" id="deskRushOrder">
                     <option value="">Default - 14 days</option>
                     <option value="3">3 Days</option>
                     <option value="5">5 Days</option>
                     <option value="7">7 Days</option>
-                 </select>
+                </select>
                 <span asp-validation-for="Desk.rushOrder" class="text-danger"></span>
             </div>
             <br />
+            <p>Calculated Price: <span id="calculatedPrice">$0</span></p>
+            <input asp-for="Desk.price" type="hidden" id="deskPrice" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -76,5 +77,54 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function calculateDeskPrice() {
+            var drawers = parseInt(document.getElementById('deskDrawers').value);
+            var material = document.getElementById('deskMaterial').value;
+            var height = parseInt(document.getElementById('deskHeight').value);
+            var width = parseInt(document.getElementById('deskWidth').value);
+            var rushOrder = parseInt(document.getElementById('deskRushOrder').value);
+
+            var basePrice = 200;
+            var drawerPrice = drawers * 50;
+            var surfaceArea = height * width;
+            var surfacePrice = (surfaceArea > 1000) ? surfaceArea - 1000 : 0;
+            var materialPrice = 0;
+            var rushOrderPrice = 0;
+
+            switch (material) {
+                case 'oak': materialPrice = 200; break;
+                case 'pine': materialPrice = 50; break;
+                case 'rosewood': materialPrice = 300; break;
+                case 'laminate': materialPrice = 100; break;
+                case 'veneer': materialPrice = 125; break;
+            }
+
+            var rushPriceMap = {
+                3: [60, 70, 80],
+                5: [40, 50, 60],
+                7: [30, 35, 40]
+            };
+            var rushPrices = rushPriceMap[rushOrder];
+            if (rushPrices) {
+                if (surfaceArea < 1000) rushOrderPrice = rushPrices[0];
+                else if (surfaceArea <= 2000) rushOrderPrice = rushPrices[1];
+                else rushOrderPrice = rushPrices[2];
+            }
+
+            var totalPrice = basePrice + drawerPrice + surfacePrice + materialPrice + rushOrderPrice;
+            document.getElementById('calculatedPrice').innerText = '$' + totalPrice.toFixed(2);
+            document.getElementById('deskPrice').value = totalPrice.toFixed(2);
+        }
+
+        document.getElementById('deskDrawers').addEventListener('change', calculateDeskPrice);
+        document.getElementById('deskMaterial').addEventListener('change', calculateDeskPrice);
+        document.getElementById('deskHeight').addEventListener('input', calculateDeskPrice);
+        document.getElementById('deskWidth').addEventListener('input', calculateDeskPrice);
+        document.getElementById('deskRushOrder').addEventListener('change', calculateDeskPrice);
+    </script>
 }
